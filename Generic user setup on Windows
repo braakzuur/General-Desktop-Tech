@@ -1,0 +1,18 @@
+Add PC(s) to Generic user in AD/ARS
+Add PC to Share Asset group in AD/ARS: ~Exclusions, Generic Accounts, & Shared Assets
+
+On the machine that requires autologon of generic user:
+	• Logon as admin account
+	• Open admin cmd prompt
+	• compmgmt
+		○ Add generic username to Primary users group
+		○ Add admin and non-admin acct to the remote desktop group
+	• Regedit
+		○ Navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+		○ Edit DefaultDomainName -> [add domain name]
+		○ New -> String Value -> Type AutoAdminLogon -> 1
+		○ New -> String Value -> Type DefaultUserName -> add username
+		○ New -> String Value -> Type ForceAutoLogon -> 1
+		○ New -> String Value -> Type DefaultPassword  -> add password
+		○ Start -> Shutdown
+		○ Start machine and test auto logon
